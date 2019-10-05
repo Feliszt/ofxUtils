@@ -1,32 +1,118 @@
-# Prerequisites
-*.d
+#########################
+# general patterns
+#########################
 
-# Compiled Object files
-*.slo
-*.lo
+docs/html
+docs/tagfile.xml
+
+*/bin/*
+!*/bin/data/
+
+# for bin folder in root
+/bin/*
+!/bin/data/
+
+[Bb]uild/
+[Oo]bj/
 *.o
-*.obj
+[Dd]ebug*/
+[Rr]elease*/
+*.mode*
+*.app/
+*.pyc
+.svn/
 
-# Precompiled Headers
-*.gch
-*.pch
+*.make
+*.gitkeep
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
 
-# Fortran module files
-*.mod
-*.smod
+#########################
+# IDE
+#########################
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+# XCode
+*.pbxuser
+*.perspective
+*.perspectivev3
+*.mode1v3
+*.mode2v3
+#XCode 4
+xcuserdata
+*.xcworkspace
 
-# Executables
-*.exe
-*.out
-*.app
+# Code::Blocks
+*.depend
+*.layout
+*.cbTemp
+
+# Visual Studio
+*.sdf
+*.opensdf
+*.suo
+*.pdb
+*.ilk
+*.aps
+ipch/
+*.db
+*.sln
+*.vcxproj
+*.user
+*.filters
+*.rc
+
+
+# Eclipse
+.metadata
+local.properties
+.externalToolBuilders
+
+# Codelite
+*.session
+*.tags
+*.workspace.*
+
+#########################
+# operating system
+#########################
+
+# Linux
+*~
+# KDE
+.directory
+.AppleDouble
+
+# OSX
+.DS_Store
+*.swp
+*~.nib
+# Thumbnails
+._*
+
+# Windows
+# Windows image file caches
+Thumbs.db
+# Folder config file
+Desktop.ini
+
+#Android
+.csettings
+
+#########################
+# packages
+#########################
+
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
