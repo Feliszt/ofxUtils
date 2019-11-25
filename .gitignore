@@ -21,6 +21,7 @@ docs/tagfile.xml
 *.app/
 *.pyc
 .svn/
+*.obj
 
 *.make
 *.gitkeep
@@ -116,3 +117,6 @@ Desktop.ini
 *.log
 *.sql
 *.sqlite
+example_Rope/.vs/example_Rope/v15/Browse.VC.opendb
+example_Rope/.vs/example_Rope/v15/Solution.VC.db-shm
+example_Rope/.vs/example_Rope/v15/Solution.VC.db-wal

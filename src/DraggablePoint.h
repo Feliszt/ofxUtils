@@ -14,10 +14,10 @@ public:
 	void setup(ofVec2f _pos, float _sz);
 	void setup(float _posX, float _posY, float _sz);
 	void draw();
-	ofVec2f getPos();
 
 	// design
 	float		x, y;
+	ofVec2f		pos;
 	
 private:
 	// design

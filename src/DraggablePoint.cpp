@@ -15,6 +15,9 @@ void DraggablePoint::setup(float _posX, float _posY, float _sz) {
 }
 
 void DraggablePoint::draw() {
+	// update ofVec2f
+	pos.set(x, y);
+
 	// check if hovered
 	hovered = (ofGetMouseX() - x) * (ofGetMouseX() - x) + (ofGetMouseY() - y) * (ofGetMouseY() - y) < sz * sz;
 
@@ -44,8 +47,4 @@ void DraggablePoint::draw() {
 	// update states
 	draggedPrev = dragged;
 	mousePressedPrev = ofGetMousePressed();
-}
-
-ofVec2f DraggablePoint::getPos() {
-	return ofVec2f(x, y);
 }

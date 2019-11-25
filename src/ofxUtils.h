@@ -5,3 +5,5 @@
 #pragma once
 
 #include "DraggablePoint.h"
+#include "Rope.h"
+#include "Particle.h"
