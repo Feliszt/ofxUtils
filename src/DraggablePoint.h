@@ -1,9 +1,6 @@
 #ifndef DraggablePoint_H
 #define DraggablePoint_H
 
-//#include <stdlib.h>
-//#include <stdio.h>
-//#include <math.h>
 #include "ofMain.h"
 
 class DraggablePoint
@@ -14,10 +11,14 @@ public:
 	void setup(ofVec2f _pos, float _sz);
 	void setup(float _posX, float _posY, float _sz);
 	void draw();
+	void setPos(ofVec2f _pos);
 
 	// design
 	float		x, y;
 	ofVec2f		pos;
+
+	// state
+	bool dragged;
 	
 private:
 	// design
@@ -25,7 +26,7 @@ private:
 	
 	// states
 	ofVec2f		diffDrag;
-	bool        hovered, dragged, draggedPrev, mousePressedPrev;
+	bool        hovered, draggedPrev, mousePressedPrev;
 };
 
 #endif // DraggablePoint_H

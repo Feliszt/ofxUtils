@@ -57,8 +57,21 @@ void Rope::applyForce(ofVec2f f) {
 	}
 }
 
+vector<ofVec2f> Rope::getPartsPos() {
+	vector<ofVec2f> temp;
+	temp.push_back(pinPos);
+	for (int i = 0; i < parts.size(); i++) {
+		temp.push_back(parts[i].getPos());
+	}
+	return temp;
+}
+
 void Rope::show() {
 	for (int i = 0; i < parts.size(); i++) {
 		parts[i].show();
 	}
+}
+
+void Rope::clear() {
+	parts.clear();
 }

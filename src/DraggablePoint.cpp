@@ -48,3 +48,8 @@ void DraggablePoint::draw() {
 	draggedPrev = dragged;
 	mousePressedPrev = ofGetMousePressed();
 }
+
+//-------------------------------------------------------------------
+void DraggablePoint::setPos(ofVec2f _pos) {
+	pos = _pos;
+}
