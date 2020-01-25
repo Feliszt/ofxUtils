@@ -49,6 +49,15 @@ void DraggablePoint::draw() {
 	mousePressedPrev = ofGetMousePressed();
 }
 
+void DraggablePoint::draw(ofVec2f _pos) {
+	draw(_pos.x, _pos.y);
+}
+
+void DraggablePoint::draw(float _posX, float _posY) {
+	this->pos = ofVec2f(_posX, _posY);
+	ofDrawCircle(_posX, _posY, sz);
+}
+
 //-------------------------------------------------------------------
 void DraggablePoint::setPos(ofVec2f _pos) {
 	pos = _pos;

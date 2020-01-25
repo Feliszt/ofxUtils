@@ -16,6 +16,7 @@ void Thread::init(int _fixedDeltaTime) {
 	constraintAccuracy = 3;
 }
 
+// update functions
 void Thread::update(float _gravity, float _restDist) {
 	// run update
 	setGravity(_gravity);
@@ -23,6 +24,14 @@ void Thread::update(float _gravity, float _restDist) {
 	update();
 }
 
+// update functions
+void Thread::update(float _gravity) {
+	// run update
+	setGravity(_gravity);
+	update();
+}
+
+// update functions
 void Thread::update() {
 	// get elapsed time
 	currentTime = ofGetElapsedTimeMillis();
@@ -51,7 +60,7 @@ void Thread::update() {
 	}
 }
 
-void Thread::display() {
+void Thread::draw() {
 	// display each points
 	for (int i = 0; i < points.size(); i++) {
 		points[i]->display();
@@ -83,6 +92,12 @@ void Thread::attachPoints(int _ind1, int _ind2, float _restDist) {
 }
 
 // attach point
+void Thread::attachPoints(int _ind1, int _ind2) {
+	float dist = points[_ind1]->pos.distance(points[_ind2]->pos);
+	points[_ind1]->attachTo(points[_ind2], dist);
+}
+
+// attach point
 void Thread::pinPointTo(int _ind, ofVec2f _pos) {
 	points[_ind]->pinTo(_pos);
 }
@@ -98,6 +113,24 @@ void Thread::addPointToThread(float _restDist) {
 	// attach the new point to the last point
 	if (this->points.size() > 1) {
 		this->attachPoints(this->points.size() - 2, this->points.size() - 1, _restDist);
+	}
+}
+
+// add one point to the chain
+void Thread::addPointToThread(ofVec2f _pos) {
+	addPointToThread(_pos.x, _pos.y);
+}
+
+// add one point to the chain
+void Thread::addPointToThread(float _posX, float _posY) {
+	// add point
+	this->addPoint(_posX, _posY);
+
+	// if there is already at least one point in the thread
+	// attach the new point to the last point
+	if (this->points.size() > 1) {
+		float restDist = this->points[this->points.size() - 2]->pos.distance(ofVec2f(_posX, _posY));
+		this->attachPoints(this->points.size() - 2, this->points.size() - 1, restDist);
 	}
 }
 

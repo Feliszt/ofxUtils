@@ -19,13 +19,17 @@ public:
 	Thread();
 	Thread(int _fixedDeltaTime);
 	void update();
+	void update(float _gravity);
 	void update(float _gravity, float _restDist);
-	void display();
+	void draw();
 	void addPoint(Point * _p);
 	void addPoint(ofVec2f _pos);
 	void addPoint(float _posX, float _posY);
+	void attachPoints(int _ind1, int _ind2);
 	void attachPoints(int _ind1, int _ind2, float _restDist);
 	void addPointToThread(float _restDist);
+	void addPointToThread(ofVec2f _pos);
+	void addPointToThread(float _posX, float _posY);
 	void removeLastPoint();
 	void pinPointTo(int _ind, ofVec2f _pos);
 	void setRestDists(float _restDists);

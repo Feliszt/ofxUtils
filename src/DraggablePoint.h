@@ -11,6 +11,8 @@ public:
 	void setup(ofVec2f _pos, float _sz);
 	void setup(float _posX, float _posY, float _sz);
 	void draw();
+	void draw(ofVec2f _pos);
+	void draw(float _posX, float _posY);
 	void setPos(ofVec2f _pos);
 
 	// design

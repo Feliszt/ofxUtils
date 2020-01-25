@@ -26,7 +26,7 @@ void Point::init(float _posX, float _posY) {
 
 	mass = 1.0;
 	damping = 0.99;
-	gravity = 980;
+	gravity = 0.0;
 }
 
 // update function
