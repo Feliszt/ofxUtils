@@ -3,17 +3,30 @@
 // constructor
 Point::Point()
 {
+	init(0, 0);
 }
 
 // constructor
 Point::Point(ofVec2f _pos)
 {
-	pos = _pos;
+	init(_pos.x, _pos.y);
+}
+
+// constructor
+Point::Point(float _posX, float _posY)
+{
+	init(_posX, _posY);
+}
+
+// init class
+void Point::init(float _posX, float _posY) {
+	pos = ofVec2f(_posX, _posY);
 	lastPos = pos;
 	acc = ofVec2f::zero();
 
 	mass = 1.0;
 	damping = 0.99;
+	gravity = 980;
 }
 
 // update function
@@ -28,7 +41,7 @@ void Point::update(float _timestep) {
 	}
 
 	// apply gravity
-	applyForce(ofVec2f(0, mass * 1600));
+	applyForce(ofVec2f(0, mass * gravity));
 
 	// compute vel
 	ofVec2f vel = pos - lastPos;
@@ -43,6 +56,7 @@ void Point::update(float _timestep) {
 	acc *= 0;
 }
 
+// solve for point
 void Point::solve() {
 	// links
 	for (int i = 0; i < attachedPoints.size(); i++) {

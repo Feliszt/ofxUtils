@@ -9,10 +9,11 @@ class Point
 public:
 	Point();
 	Point(ofVec2f _pos);
+	Point(float _posX, float _posY);
 
 	// variables
 	ofVec2f acc, pos, lastPos;
-	float mass, damping;
+	float mass, damping, gravity;
 	bool pinned = false;
 	ofVec2f pinPos;
 	
@@ -29,4 +30,7 @@ public:
 	// links and constraints
 	void attachTo(Point * _p, float _restDist);
 	void pinTo(ofVec2f _pinPos);
+
+private:
+	void init(float _posX, float _posY);
 };
