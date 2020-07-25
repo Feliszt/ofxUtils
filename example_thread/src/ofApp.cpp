@@ -72,7 +72,7 @@ void ofApp::draw(){
 		t.points[i]->applyForce(ofVec2f(fX, fY));
 	}
 	t.update(gravity, restDists);
-	t.display();
+	t.draw();
 
 	// draw draggable points
 	ofSetColor(21, 24, 235);

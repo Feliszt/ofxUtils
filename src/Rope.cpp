@@ -30,6 +30,25 @@ void Rope::setup(ofVec2f _pinPos, int _nbParts, float _k, float _damp) {
 	}
 }
 
+void Rope::update() {
+	for (int i = 0; i < parts.size(); i++) {
+		if (i != 0) {
+			parts[i].setPos(parts[i - 1].getPos());
+		}
+		parts[i].update();
+	}
+}
+
+void Rope::update(ofVec2f _pos) {
+	for (int i = 0; i < parts.size(); i++) {
+		parts[0].setPos(_pos);
+		if (i != 0) {
+			parts[i].setPos(parts[i - 1].getPos());
+		}
+		parts[i].update();
+	}
+}
+
 void Rope::update(float _k, float _damp) {
 	for (int i = 0; i < parts.size(); i++) {
 		if (i != 0) {

@@ -12,9 +12,10 @@ void DraggablePoint::setup(float _posX, float _posY, float _sz) {
 	x = _posX;
 	y = _posY;
 	sz = _sz;
+	pos.set(x, y);
 }
 
-void DraggablePoint::draw() {
+void DraggablePoint::draw(bool _actualDraw) {
 	// update ofVec2f
 	pos.set(x, y);
 
@@ -40,9 +41,12 @@ void DraggablePoint::draw() {
 		y = ofGetMouseY() + diffDrag.y;
 	}
 
+	// update released
+	released = !dragged && draggedPrev;
+
 	// draw point
 	float offsetSz = ((hovered || dragged)? 0.2 : 0.0) * sz;
-	ofDrawCircle(x, y, sz + offsetSz);
+	if (_actualDraw) ofDrawCircle(x, y, sz + offsetSz);
 
 	// update states
 	draggedPrev = dragged;
@@ -61,4 +65,9 @@ void DraggablePoint::draw(float _posX, float _posY) {
 //-------------------------------------------------------------------
 void DraggablePoint::setPos(ofVec2f _pos) {
 	pos = _pos;
+}
+
+//-------------------------------------------------------------------
+void DraggablePoint::setSz(float _sz) {
+	sz = _sz;
 }

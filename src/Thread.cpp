@@ -102,6 +102,11 @@ void Thread::pinPointTo(int _ind, ofVec2f _pos) {
 	points[_ind]->pinTo(_pos);
 }
 
+// attach point
+void Thread::pinPointTo(int _ind) {
+	points[_ind]->pinTo(points[_ind]->pos);
+}
+
 // add one point to the chain
 void Thread::addPointToThread(float _restDist) {
 	// add point
@@ -130,7 +135,7 @@ void Thread::addPointToThread(float _posX, float _posY) {
 	// attach the new point to the last point
 	if (this->points.size() > 1) {
 		float restDist = this->points[this->points.size() - 2]->pos.distance(ofVec2f(_posX, _posY));
-		this->attachPoints(this->points.size() - 2, this->points.size() - 1, restDist);
+		this->attachPoints(this->points.size() - 2, this->points.size() - 1, max((float) 1.0, restDist));
 	}
 }
 

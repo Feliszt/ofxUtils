@@ -12,7 +12,7 @@ void Particle::setup(ofVec2f _posStart, float _k, float _damp) {
 	k = _k;
 	damp = _damp;
 
-	szPart = 20;
+	szPart = 5;
 	szAnchor = 5;
 	acc = ofVec2f(0, 0);
 	vel = ofVec2f(0, 0);

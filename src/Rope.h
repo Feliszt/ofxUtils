@@ -7,6 +7,8 @@ class Rope
 public:
 	Rope();
 	void setup(ofVec2f _pinPos, int _nbParts, float _k, float _damp);
+	void update();
+	void update(ofVec2f _pos);
 	void update(float _k, float _damp);
 	void update(ofVec2f _pos, float _k, float _damp);
 	void applyForce(ofVec2f f);

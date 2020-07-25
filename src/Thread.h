@@ -32,6 +32,7 @@ public:
 	void addPointToThread(float _posX, float _posY);
 	void removeLastPoint();
 	void pinPointTo(int _ind, ofVec2f _pos);
+	void pinPointTo(int _ind);
 	void setRestDists(float _restDists);
 	void setGravity(float _gravity);
 
