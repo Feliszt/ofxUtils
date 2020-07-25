@@ -20,4 +20,7 @@ class ofApp : public ofBaseApp{
 		ofxPanel			gui;
 		ofxFloatSlider		walkerAmpMax, manualMod;
 		ofxIntSlider		nPoints;
+
+		// debug
+		bool showDebug = true;
 };

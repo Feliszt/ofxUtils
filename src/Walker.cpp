@@ -4,7 +4,7 @@ Walker::Walker()
 {
 }
 
-Walker::Walker(ofVec2f _p1, ofVec2f _p2, int _nPoints, float _walkerAmpMax)
+Walker::Walker(ofVec2f _p1, ofVec2f _p2, int _nPoints, float _walkerAmpMax, bool _moving)
 {
 	//
 	p1				= _p1;
@@ -16,6 +16,14 @@ Walker::Walker(ofVec2f _p1, ofVec2f _p2, int _nPoints, float _walkerAmpMax)
 	walkerAmps = shuffleAmps();
 	dT = 0.01;
 	manualMod = 1.0;
+	moving = _moving;
+	movingT = 0.0;
+
+	// set frequencies
+	walkerMovingFreqs.clear();
+	for (int i = 0; i < nPoints; i++) {
+		walkerMovingFreqs.push_back(ofRandom(50, 300));
+	}
 }
 
 vector<float> Walker::shuffleAmps()
@@ -37,22 +45,25 @@ ofPolyline Walker::computePoints() {
 	float distMod = ofMap(distBetPoints, 0, ofGetWidth(), 0.0, 1.0);
 
 	// get vector of control points
-	vector<ofVec2f> cps;
-	cps.push_back(p1);
+	interPts.clear();
+	interPts.push_back(p1);
 	for (int i = 0; i < nPoints; i++) {
 		float rat = ofMap(i, -1, nPoints, 0, 1.0);
-		ofVec2f p_temp = p1 * (1 - rat) + p2 * rat + walkerAmps[i] * distMod * manualMod * ofVec2f(cos(angleBetPoints - HALF_PI), sin(angleBetPoints - HALF_PI));
-		cps.push_back(p_temp);
+		float movingAmp = sin(movingT / walkerMovingFreqs[i]);
+		ofVec2f p_temp = p1 * (1 - rat) + p2 * rat + walkerAmps[i] * distMod * manualMod * movingAmp * ofVec2f(cos(angleBetPoints - HALF_PI), sin(angleBetPoints - HALF_PI));
+		interPts.push_back(p_temp);
 	}
-	cps.push_back(p2);
+	interPts.push_back(p2);
 
 	// compute points
 	ofPolyline line_temp;
 	line_temp.clear();
 	for (float t = 0.0; t < 1.0; t += dT) {
-		ofVec2f p_temp = bezier(t, cps);
+		ofVec2f p_temp = bezier(t, interPts);
 		line_temp.lineTo(p_temp.x, p_temp.y);
 	}
+
+	if (moving) movingT += 1;
 
 	return line_temp;
 }
@@ -64,4 +75,12 @@ void Walker::setPoints(ofVec2f _p1, ofVec2f _p2) {
 
 void Walker::setMod(float _manualMod) {
 	manualMod = _manualMod;
+}
+
+void Walker::setMoving(bool _moving) {
+	moving = _moving;
+}
+
+vector<ofVec2f>	 Walker::getInterPts() {
+	return interPts;
 }
