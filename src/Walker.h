@@ -14,6 +14,7 @@ public:
 	void				setMod(float _manualMod);
 	void				setMoving(bool _moving);
 	vector<ofVec2f>		getInterPts();
+	void				setAmp(int _ind, float _amp);
 
 private:
 	// variables
@@ -21,7 +22,7 @@ private:
 	float				dT;
 	int					nPoints;
 	vector<ofVec2f>		interPts;
-	vector<float>		walkerAmps, walkerMovingFreqs;
+	vector<float>		walkerAmps, walkerMovingFreqs, mults;
 	float				walkerAmpMax;
 	float				manualMod;
 	float				angleBetPoints, distBetPoints;

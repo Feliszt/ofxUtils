@@ -22,8 +22,14 @@ Walker::Walker(ofVec2f _p1, ofVec2f _p2, int _nPoints, float _walkerAmpMax, bool
 	// set frequencies
 	walkerMovingFreqs.clear();
 	for (int i = 0; i < nPoints; i++) {
-		walkerMovingFreqs.push_back(ofRandom(50, 300));
-	}	
+		walkerMovingFreqs.push_back(ofRandom(30, 200));
+	}
+
+	// set mult
+	mults.clear();
+	for (int i = 0; i < nPoints; i++) {
+		mults.push_back(ofRandom(0, 1) < 0.5 ? -1.0 : 1.0);
+	}
 }
 
 vector<float> Walker::shuffleAmps()
@@ -34,6 +40,12 @@ vector<float> Walker::shuffleAmps()
 		temp.push_back(ofRandom(-walkerAmpMax, walkerAmpMax));
 	}
 	return temp;
+}
+
+void Walker::setAmp(int _ind, float _amp) {
+	if (_ind < 0 || _ind >= walkerAmps.size()) return;
+
+	walkerAmps[_ind] = ofMap(_amp, 0, 1, 0, mults[_ind] * walkerAmpMax);
 }
 
 ofPolyline Walker::computePoints() {
