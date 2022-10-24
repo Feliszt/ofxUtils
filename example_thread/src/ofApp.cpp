@@ -77,8 +77,8 @@ void ofApp::draw(){
 	// draw draggable points
 	ofSetColor(21, 24, 235);
 	ofFill();
-	pt1.draw();
-	pt2.draw();
+	pt1.draw(true);
+	pt2.draw(true);
 
 	// draw gui
 	if (showDebug) {

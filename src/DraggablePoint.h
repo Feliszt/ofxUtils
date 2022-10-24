@@ -23,7 +23,6 @@ public:
 	// state
 	bool dragged, hovered, released;
 	
-private:
 	// design
 	float		sz;
 	

@@ -21,7 +21,8 @@ void Bubble::update() {
 	pos += vel;
 	acc *= 0;
 
-	drift = ofVec3f(ofRandom(-driftStrength, driftStrength), ofRandom(-driftStrength, driftStrength), ofRandom(-driftStrength, driftStrength));
+	//drift = ofVec3f(ofRandom(-driftStrength, driftStrength), ofRandom(-driftStrength, driftStrength), ofRandom(-driftStrength, driftStrength));
+	drift = ofVec2f(ofRandom(-driftStrength, driftStrength), ofRandom(-driftStrength, driftStrength));
 	vel = vel.length() * 0.99 * vel.normalized() + drift;
 
 	// check if out of screen

@@ -14,7 +14,7 @@ Walker::Walker(ofVec2f _p1, ofVec2f _p2, int _nPoints, float _walkerAmpMax, bool
 
 	//
 	walkerAmps = shuffleAmps();
-	dT = 0.01;
+	dT = 0.002;
 	manualMod = 1.0;
 	moving = _moving;
 	movingT = 0.0;
@@ -22,13 +22,16 @@ Walker::Walker(ofVec2f _p1, ofVec2f _p2, int _nPoints, float _walkerAmpMax, bool
 	// set frequencies
 	walkerMovingFreqs.clear();
 	for (int i = 0; i < nPoints; i++) {
-		walkerMovingFreqs.push_back(ofRandom(30, 200));
+		//float freq = ofMap(i, 0, nPoints - 1, 50, 55);
+		float freq = ofRandom(30, 120);
+		walkerMovingFreqs.push_back(freq);
 	}
 
 	// set mult
 	mults.clear();
 	for (int i = 0; i < nPoints; i++) {
 		mults.push_back(ofRandom(0, 1) < 0.5 ? -1.0 : 1.0);
+		//mults.push_back(1.0);
 	}
 }
 
@@ -38,13 +41,14 @@ vector<float> Walker::shuffleAmps()
 	temp.clear();
 	for (int i = 0; i < nPoints; i++) {
 		temp.push_back(ofRandom(-walkerAmpMax, walkerAmpMax));
+		//temp.push_back(ofRandom(0, 1) < 0.5 ? -walkerAmpMax : walkerAmpMax);
+		//temp.push_back(walkerAmpMax);
 	}
 	return temp;
 }
 
 void Walker::setAmp(int _ind, float _amp) {
 	if (_ind < 0 || _ind >= walkerAmps.size()) return;
-
 	walkerAmps[_ind] = ofMap(_amp, 0, 1, 0, mults[_ind] * walkerAmpMax);
 }
 
@@ -55,6 +59,7 @@ ofPolyline Walker::computePoints() {
 
 	// get mods
 	float distMod = ofMap(distBetPoints, 0, ofGetWidth(), 0.0, 1.0);
+	distMod = 1.0;
 
 	// get vector of control points
 	interPts.clear();

@@ -72,3 +72,31 @@ string sec2Timestamp(float _timeS) {
 	string timestamp = nHH_string + ":" + nMM_string + ":" + nSS_string + "." + nMS_string;
 	return timestamp;
 }
+
+//--------------------------------------------------------------
+bool pointIsInPolygon(ofPolyline polygon, ofVec2f point) {
+	int counter = 0;
+	int i;
+	double xinters;
+	ofVec2f p1, p2;
+	auto points = polygon.getVertices();
+
+	p1 = points[0];
+	for (i = 1; i <= points.size(); i++) {
+		p2 = polygon[i % points.size()];
+		if (point.y > MIN(p1.y, p2.y)) {
+			if (point.y <= MAX(p1.y, p2.y)) {
+				if (point.x <= MAX(p1.x, p2.x)) {
+					if (p1.y != p2.y) {
+						xinters = (point.y - p1.y)*(p2.x - p1.x) / (p2.y - p1.y) + p1.x;
+						if (p1.x == p2.x || point.x <= xinters)
+							counter++;
+					}
+				}
+			}
+		}
+		p1 = p2;
+	}
+	if (counter % 2 == 0) return false;
+	else return true;
+}
